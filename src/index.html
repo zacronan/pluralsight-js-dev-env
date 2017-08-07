@@ -1,6 +1,23 @@
+<!--
+  **NOTE** This is a template for index.html.
+  It uses ejs and htmlWebpackPlugin to generate a different index.html for each environment.
+  htmlWebpackPlugin will dynamically add references to the scripts and styles that it bundles
+  to this file. The generated bundles have hash-based filenames,
+  so it's necessary to add the references dynamically.
+  For more info on ejs, see http://www.embeddedjs.com or http://ejs.co/
+  see https://github.com/jaketrent/html-webpack-template/blob/master/index.ejs
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <% if (htmlWebpackPlugin.options.trackJSToken) { %>
+  <!-- BEGIN TRACKJS -->
+  <script type="text/javascript">window._trackJs = { token: '<%=htmlWebpackPlugin.options.trackJSToken%>' };</script>
+  <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+  <!-- END TRACKJS -->
+  <% } %>
+
   <meta charset="UTF-8">
   <script src="http://cdn.polyfill.io/v2/polyfill.js?features=fetch"></script>
 </head>
